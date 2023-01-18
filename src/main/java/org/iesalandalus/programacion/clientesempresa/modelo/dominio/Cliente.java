@@ -9,7 +9,7 @@ public class Cliente {
     private static final String ER_CORREO = "^([0-9a-zA-Z]+[-._+&])*[0-9a-zA-Z]+@([-0-9a-zA-Z]+[.])+[a-zA-Z]{2,6}$";
     private static final String ER_TELEFONO = "[69]\\d{8}";
     private static final String ER_DNI = "([XY]?)([0-9]{7,8})([A-Za-z])";
-    private static final DateTimeFormatter FORMATO_FECHA = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+    private static final DateTimeFormatter FORMATO_FECHA = DateTimeFormatter.ofPattern("dd//yyyy");
     private String nombre;
     private String dni;
     private String correo;
@@ -17,7 +17,6 @@ public class Cliente {
     private LocalDate fechaNacimiento;
 
     public Cliente(String nombre, String dni, String correo, String telefono, LocalDate fechaNacimiento) {
-        super();
         this.nombre = nombre;
         this.dni = dni;
         this.correo = correo;
@@ -25,7 +24,7 @@ public class Cliente {
         this.fechaNacimiento = fechaNacimiento;
     }
 
-    /*private String formateaNombre(String nombre) {
+    private String formateaNombre(String nombre) {
         nombre = nombre.trim(); // elimina los espacios en blanco al principio y al final
         String[] palabras = nombre.split(" "); // divide el nombre en palabras
         StringBuilder sb = new StringBuilder();
@@ -35,9 +34,9 @@ public class Cliente {
             sb.append(" "); // añade un espacio entre cada palabra
         }
         return sb.toString().trim(); // elimina el último espacio y devuelve el nombre formateado
-    }*/
+    }
 
-    private String formateaNombre1(String nombre) {
+    /*private String formateaNombre(String nombre) {
         String[] palabras = nombre.trim().split("\\s+");
         StringBuilder sb = new StringBuilder();
         for (String palabra: palabras) {
@@ -46,7 +45,9 @@ public class Cliente {
             sb.append(" ");
         }
         return sb.toString().trim();
-    }
+    }*/
+    
+   
 
     private boolean comprobarLetraDni(String dni) {
         String numeros = "";
@@ -95,7 +96,7 @@ public class Cliente {
         if (nombre.trim().isEmpty()) {
             throw new IllegalArgumentException("ERROR: El nombre de un cliente no puede estar vacío.");
         }
-        this.nombre = formateaNombre1(nombre);
+        this.nombre = formateaNombre(nombre);
     }
 
     public String getDni() {

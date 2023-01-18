@@ -10,17 +10,19 @@ public class Consola {
     public static void mostrarMenu() {
         System.out.println("Bienvenido al programa de gestión de clientes de la empresa.");
         System.out.println("Seleccione una opción:");
-        System.out.println("1.- Añadir un nuevo cliente.");
-        System.out.println("2.- Buscar un cliente existente.");
-        System.out.println("3.- Eliminar un cliente.");
-        System.out.println("4.- Ver clientes según fecha de nacimiento.");
-        System.out.println("5.- Ver todos los clientes registrados.");
-        System.out.println("0.- Salir del programa.");
+        System.out.println("1 - Añadir un nuevo cliente.");
+        System.out.println("2 - Buscar un cliente existente.");
+        System.out.println("3 - Eliminar un cliente.");
+        System.out.println("4 - Ver clientes según fecha de nacimiento.");
+        System.out.println("5 - Ver todos los clientes registrados.");
+        System.out.println("0 - Salir del programa.");
+        System.out.println("");
     }
     public static Opcion elegirOpcion() {
         int opcion;
         do {
             System.out.println("Elije una opción del 0 al 5:");
+            System.out.println("");
             opcion = Entrada.entero();
         } while (opcion < 0 || opcion > 5);
 
@@ -33,8 +35,10 @@ public class Consola {
         Cliente cliente = null;
         boolean error;
         do {
-            error = false;
-
+           
+        	
+        	error = false;
+        	
             System.out.println("Ingresa el nombre del cliente:");
             nombre = Entrada.cadena();
 
@@ -49,6 +53,8 @@ public class Consola {
 
             System.out.println("Ingresa la fecha de nacimiento del cliente (dd/mm/yyyy):");
             fechaNacimiento = leerFechaNacimiento();
+            
+            
 
             try {
                 cliente = new Cliente(nombre, dni, correo, telefono, fechaNacimiento);
