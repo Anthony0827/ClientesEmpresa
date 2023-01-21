@@ -17,17 +17,6 @@ public class Cliente {
     private String telefono;
     private LocalDate fechaNacimiento;
 
-    /*private String formateaNombre(String nombre) {
-        nombre = nombre.trim(); // elimina los espacios en blanco al principio y al final
-        String[] palabras = nombre.split(" "); // divide el nombre en palabras
-        StringBuilder sb = new StringBuilder();
-        for (String palabra : palabras) {
-            sb.append(Character.toUpperCase(palabra.charAt(0))); // pone la primera letra en mayúscula
-            sb.append(palabra.substring(1).toLowerCase()); // pone las demás letras en minúscula
-            sb.append(" "); // añade un espacio entre cada palabra
-        }
-        return sb.toString().trim(); // elimina el último espacio y devuelve el nombre formateado
-    }*/
 
     private String formateaNombre(String nombre) {
         // Crea una expresión regular para encontrar palabras alfabéticas
@@ -59,25 +48,7 @@ public class Cliente {
         return nombreFormateado;
     }
 
-    /*public static String formateaNombre(String nombre) {
-    	// Eliminar los espacios innecesarios
-    	nombre = nombre.trim();
-
-    	// Separar en palabras
-    	String[] palabras = nombre.split(" ");
-
-    	// Formatear cada palabra
-    	String[] formateado = new String[palabras.length];
-    	for (int i = 0; i < palabras.length; i++) {
-    		String palabra = palabras[i];
-    		formateado[i] = palabra.substring(0,1).toUpperCase() + palabra.substring(1).toLowerCase();
-    	}
-
-    	// Unir palabras
-    	String nombreFormateado = String.join(" ", formateado);
-    	return nombreFormateado;
-    }*/
-
+  
     private boolean comprobarLetraDni(String dni) {
         String numeros = "";
         String letra = "";
@@ -100,7 +71,7 @@ public class Cliente {
         return comprobarDni;
     }
 
-    // Método getIniciales que devuelve las iniciales del nombre.
+    // Meetodo  que devuelve las iniciales del nombre.
     public String getIniciales() {
         String iniciales = "";
         // Dividimos el nombre en palabras y lo guardamos en un array.
