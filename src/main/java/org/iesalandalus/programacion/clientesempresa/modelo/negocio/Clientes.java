@@ -1,4 +1,6 @@
 package org.iesalandalus.programacion.clientesempresa.modelo.negocio;
+import javax.naming.OperationNotSupportedException;
+
 import org.iesalandalus.programacion.clientesempresa.modelo.dominio.Cliente;
 
 public class Clientes {
@@ -41,7 +43,7 @@ public class Clientes {
         return cs >= capacidad;
     }
 
-    public void insertar(Cliente cliente) throws IllegalArgumentException {
+    public void insertar(Cliente cliente) throws OperationNotSupportedException {
         if (cliente == null) {
             throw new IllegalArgumentException("ERROR: No se puede insertar un cliente nulo.");
         }
@@ -88,7 +90,7 @@ public class Clientes {
         clientes[i] = null;
     }
 
-    public void borrar(Cliente cliente) throws IllegalArgumentException {
+    public void borrar(Cliente cliente) throws OperationNotSupportedException {
         if (cliente == null) {
             throw new NullPointerException("ERROR: El cliente no puede ser nulo al momento de insertarlo.");
         }

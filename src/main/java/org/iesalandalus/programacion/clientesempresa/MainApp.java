@@ -1,6 +1,9 @@
 package org.iesalandalus.programacion.clientesempresa;
 
 import java.time.LocalDate;
+
+import javax.naming.OperationNotSupportedException;
+
 import org.iesalandalus.programacion.clientesempresa.modelo.dominio.Cliente;
 import org.iesalandalus.programacion.clientesempresa.modelo.negocio.Clientes;
 import org.iesalandalus.programacion.clientesempresa.vista.Consola;
@@ -48,7 +51,7 @@ public class MainApp {
         try {
             listaClientes.insertar(Consola.leerCliente());
             System.out.println("El cliente ha sido agregado exitosamente.");
-        } catch (IllegalArgumentException | NullPointerException e) {
+        } catch (IllegalArgumentException | NullPointerException | OperationNotSupportedException e) {
             System.out.println(e.getMessage());
         }
     }
@@ -72,17 +75,19 @@ public class MainApp {
             Cliente cliente = new Cliente(Consola.leerCliente());
             listaClientes.borrar(cliente);
             System.out.println("El cliente ha sido eliminado exitosamente.");
-        } catch (NullPointerException | IllegalArgumentException e) {
+        } catch (IllegalArgumentException | NullPointerException | OperationNotSupportedException e) {
             System.out.println(e.getMessage());
         }
     }
 
-    private static void mostrarClientesFecha() {
+
+    
+    public static void mostrarClientesFecha() {
         Cliente[] clientes = listaClientes.get();
         int citasMostradas = 0;
         LocalDate fecha = Consola.leerFechaNacimiento();
         for (int i = 0; i < clientes.length; i++) {
-            if (clientes[i].getFechaNacimiento() == fecha) {
+            if (clientes[i].getFechaNacimiento().equals(fecha)) {
                 System.out.println(clientes[i]);
                 citasMostradas++;
             }
@@ -92,7 +97,7 @@ public class MainApp {
         } else {
             System.out.println("");
         }
-    }
+    }		
 
     private static void mostrarClientes() {
         int citasMostradas = 0;
