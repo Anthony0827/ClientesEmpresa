@@ -22,30 +22,10 @@ public class MainApp {
             System.out.println("");
             ejecutarOpcion(opcion);
         } while (opcion != Opcion.SALIR);
-        System.out.println("Saliendo...");
+        System.out.println("Hasta la proxima!");
     }
 
-    private static void ejecutarOpcion(Opcion opcion) {
-        switch (opcion) {
-        case INSERTAR_CLIENTE:
-            insertarCliente();
-            break;
-        case BUSCAR_CLIENTE:
-            buscarCliente();
-            break;
-        case BORRAR_CLIENTE:
-            borrarCliente();
-            break;
-        case MOSTRAR_CLIENTES_FECHA:
-            mostrarClientesFecha();
-            break;
-        case MOSTRAR_CLIENTES:
-            mostrarClientes();
-            break;
-        default:
-            break;
-        }
-    }
+    
 
     private static void insertarCliente() {
         try {
@@ -79,9 +59,22 @@ public class MainApp {
             System.out.println(e.getMessage());
         }
     }
-
-
     
+    private static void mostrarClientes() {
+        int citasMostradas = 0;
+        Cliente[] clientes = listaClientes.get();
+        for (int i = 0; i < clientes.length; i++) {
+            if (clientes[i] != null) {
+                System.out.println(clientes[i]);
+                citasMostradas++;
+            }
+        }
+        if (citasMostradas == 0) {
+            System.out.println("No existen clientes.");
+        }
+    }
+
+
     public static void mostrarClientesFecha() {
         Cliente[] clientes = listaClientes.get();
         int citasMostradas = 0;
@@ -97,20 +90,29 @@ public class MainApp {
         } else {
             System.out.println("");
         }
-    }		
-
-    private static void mostrarClientes() {
-        int citasMostradas = 0;
-        Cliente[] clientes = listaClientes.get();
-        for (int i = 0; i < clientes.length; i++) {
-            if (clientes[i] != null) {
-                System.out.println(clientes[i]);
-                citasMostradas++;
-            }
-        }
-        if (citasMostradas == 0) {
-            System.out.println("No existen clientes.");
-        }
     }
 
+    private static void ejecutarOpcion(Opcion opcion) {
+        switch (opcion) {
+        case INSERTAR_CLIENTE:
+            insertarCliente();
+            break;
+        case BUSCAR_CLIENTE:
+            buscarCliente();
+            break;
+        case BORRAR_CLIENTE:
+            borrarCliente();
+            break;
+        case MOSTRAR_CLIENTES_FECHA:
+            mostrarClientesFecha();
+            break;
+        case MOSTRAR_CLIENTES:
+            mostrarClientes();
+            break;
+        default:
+            break;
+        }
+    }
+    
+    
 }

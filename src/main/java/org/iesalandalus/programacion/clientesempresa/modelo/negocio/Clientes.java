@@ -18,15 +18,6 @@ public class Clientes {
         clientes = new Cliente[capacidad];
     }
 
-    public Cliente[] get() {
-        Cliente[] clientesGet = new Cliente[tamano];
-        for (int i = 0; i < tamano; i++) {
-            clientesGet[i] = new Cliente(clientes[i]);
-        }
-        return clientesGet;
-
-    }
-
     public int getTamano() {
         return tamano;
     }
@@ -35,12 +26,24 @@ public class Clientes {
         return capacidad;
     }
 
-    private boolean tamanoSuperado(int t) {
-        return t >= tamano;
+    private boolean tamanoSuperado(int tam) {
+        return tam >= tamano;
     }
 
-    private boolean capacidadSuperada(int cs) {
-        return cs >= capacidad;
+    private boolean capacidadSuperada(int cap) {
+        return cap >= capacidad;
+    }
+
+    private int buscarIndice(Cliente cliente) {
+        int indice = tamano + 1;
+        boolean encontrado = false;
+        for (int i = 0; i < tamano && !encontrado; i++) {
+            if (clientes[i].equals(cliente)) {
+                encontrado = true;
+                indice = i;
+            }
+        }
+        return indice;
     }
 
     public void insertar(Cliente cliente) throws OperationNotSupportedException {
@@ -57,17 +60,6 @@ public class Clientes {
             throw new IllegalArgumentException("ERROR: Ya existe un cliente con ese DNI.");
         }
         tamano++;
-    }
-    private int buscarIndice(Cliente cliente) {
-        int indice = tamano + 1;
-        boolean encontrado = false;
-        for (int i = 0; i < tamano && !encontrado; i++) {
-            if (clientes[i].equals(cliente)) {
-                encontrado = true;
-                indice = i;
-            }
-        }
-        return indice;
     }
 
     public Cliente buscar(Cliente cliente) {
@@ -91,15 +83,23 @@ public class Clientes {
     }
 
     public void borrar(Cliente cliente) throws OperationNotSupportedException {
-        if (cliente == null) {
-            throw new NullPointerException("ERROR: El cliente no puede ser nulo al momento de insertarlo.");
-        }
-        int indice = buscarIndice(cliente);
-        if (tamanoSuperado(indice)) {
-            throw new IllegalArgumentException("ERROR: No se ha encontrado ningún cliente con los datos especificados.");
-        }
-        desplazarUnaPosicionHaciaIzquierda(indice);
-        tamano--;
-    }
+		if (cliente == null) {
+			throw new NullPointerException("ERROR: No se puede borrar un cliente nulo.");
+		}
+		int indice = buscarIndice(cliente);
+		if (tamanoSuperado(indice)) {
+			throw new OperationNotSupportedException("ERROR: No existe ningún cliente como el indicado.");
+		}
+		desplazarUnaPosicionHaciaIzquierda(indice);
+		tamano--;
+	}
 
+    public Cliente[] get() {
+        Cliente[] clientesGet = new Cliente[tamano];
+        for (int i = 0; i < tamano; i++) {
+            clientesGet[i] = new Cliente(clientes[i]);
+        }
+        return clientesGet;
+
+    }
 }

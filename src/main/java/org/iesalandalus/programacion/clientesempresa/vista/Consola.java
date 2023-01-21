@@ -35,10 +35,9 @@ public class Consola {
         Cliente cliente = null;
         boolean error;
         do {
-           
-        	
-        	error = false;
-        	
+
+            error = false;
+
             System.out.println("Ingresa el nombre del cliente:");
             nombre = Entrada.cadena();
 
@@ -53,8 +52,6 @@ public class Consola {
 
             System.out.println("Ingresa la fecha de nacimiento del cliente (dd/mm/yyyy):");
             fechaNacimiento = leerFechaNacimiento();
-            
-            
 
             try {
                 cliente = new Cliente(nombre, dni, correo, telefono, fechaNacimiento);
